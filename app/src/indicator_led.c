@@ -82,7 +82,6 @@ static int zmk_indicator_led_update() {
     return 0;
 }
 void indicator_led_brightness_cal(void) {
-
     if (led_cycle.brightness >= CONFIG_ZMK_IDICATOR_LAYER_CYCLE_MAXBRT) {
         led_cycle.cycle_direction = false;
     }
@@ -112,6 +111,7 @@ static void cycle_work_work_handler(struct k_work *work) {
     zmk_indicator_led_set_brt(led_cycle.brightness);
     k_work_reschedule(&cycle_work, K_MSEC(CONFIG_ZMK_IDICATOR_LAYER_CYCLE_INTERVAL));
 }
+
 static void blinky_work_work_handler(struct k_work *work) {
     indicator_led_brightness_blinky();
 
@@ -119,6 +119,7 @@ static void blinky_work_work_handler(struct k_work *work) {
     int BLINK_INTERVAL = CONFIG_ZMK_IDICATOR_BLINK_INTERVAL;
     k_work_reschedule(&blinky_work, K_MSEC(BLINK_INTERVAL));
 }
+
 static int zmk_indicator_led_init(void) {
     if (!device_is_ready(indiled_dev)) {
         LOG_ERR("indicator_led device \"%s\" is not ready", indiled_dev->name);
@@ -220,7 +221,7 @@ static inline void blinky_onoff(bool onoff) {
     }
 }
 static void polling_work_work_handler(struct k_work *work) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         if (zmk_keymap_layer_active(i)) {
             switch (i) {
             case 0:
@@ -233,15 +234,20 @@ static void polling_work_work_handler(struct k_work *work) {
                 zmk_indicator_led_set_brt(CONFIG_ZMK_IDICATOR_LAYER_BRT);
                 zmk_indicator_led_on();
                 blinky_onoff(false);
-
                 break;
             case 2:
+                cycle_onoff(false);
+                zmk_indicator_led_set_brt(CONFIG_ZMK_IDICATOR_LAYER_HIGH_BRT);
+                zmk_indicator_led_on();
+                blinky_onoff(false);
+                break;
+            case 3:
                 if (!zmk_indicator_led_is_on())
                     zmk_indicator_led_on();
                 cycle_onoff(true);
                 blinky_onoff(false);
                 break;
-            case 3:
+            case 4:
                 if (!zmk_indicator_led_is_on())
                     zmk_indicator_led_on();
                 cycle_onoff(false);
