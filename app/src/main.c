@@ -60,9 +60,11 @@ int main(void) {
         char target_q10[] = "bbq10";
         char target_q20[] = "bbq20";
         char target_q30[] = "bbq30";
-        char target_9981[] = "bb9981";
-        char target_9983[] = "bb9983";
-        if (strcmp(CONFIG_ZMK_KEYBOARD_NAME, target_9900) == 0) {
+        char target_9981[] = "bbp9981";
+        char target_9983[] = "bbp9983";
+        char target_bbcase[] = "bbcase";
+        if (strcmp(CONFIG_ZMK_KEYBOARD_NAME, target_9900) == 0 ||
+            strcmp(CONFIG_ZMK_KEYBOARD_NAME, target_bbcase) == 0) {
             int8_t x = xy_pos.val2;
             int8_t y = xy_pos.val1;
             int8_t scroll_x = 0;
@@ -86,7 +88,8 @@ int main(void) {
                     scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
                     scroll_y = -((y > 0) ? 1 : (y < 0) ? -1 : 0);
                 } else if (abs(y) >= 0 && abs(y) < 2) {
-                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;;
+                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
+                    ;
                     scroll_y = 0;
                 }
                 int Scroll_INTERVAL = CONFIG_TRACKPAD_SCROLL_INTERVAL;
@@ -94,8 +97,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5;
-                y = ((y < 127) ? y : (y - 256)) * 1.5;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);
@@ -130,7 +133,8 @@ int main(void) {
                     scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
                     scroll_y = -((y > 0) ? 1 : (y < 0) ? -1 : 0);
                 } else if (abs(y) >= 0 && abs(y) < 2) {
-                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;;
+                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
+                    ;
                     scroll_y = 0;
                 }
                 int Scroll_INTERVAL = CONFIG_TRACKPAD_SCROLL_INTERVAL;
@@ -138,8 +142,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5;
-                y = ((y < 127) ? y : (y - 256)) * 1.5;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);
@@ -171,7 +175,8 @@ int main(void) {
                     scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
                     scroll_y = -((y > 0) ? 1 : (y < 0) ? -1 : 0);
                 } else if (abs(y) >= 0 && abs(y) < 2) {
-                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;;
+                    scroll_x = -(x > 0) ? 1 : (x < 0) ? -1 : 0;
+                    ;
                     scroll_y = 0;
                 }
                 int Scroll_INTERVAL = CONFIG_TRACKPAD_SCROLL_INTERVAL;
@@ -179,8 +184,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5;
-                y = ((y < 127) ? y : (y - 256)) * 1.5;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);

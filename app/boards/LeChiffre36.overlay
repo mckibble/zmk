@@ -1,0 +1,74 @@
+&i2c0 {
+    a320@3b {
+        compatible = "avago,a320";
+        status = "okay";
+        reg = <0x3B>;
+    };
+    
+	label = "I2C_0";
+	compatible = "nordic,nrf-twim";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>; 
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&spi2 {
+	cs-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+	status = "okay";
+	lcd0: lcd@0 {
+		compatible = "jdi,lpm009m360a";
+		reg = <0>;
+		status = "okay";
+		spi-max-frequency = <4000000>;
+		disp_gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+		extcomin_gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+		width = <144>;
+		height = <72>;
+        color_mode = [02];
+		reverse = <1>;
+		rotation = <1>;
+	};
+};
+
+
+&pinctrl {
+    i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 22)>,
+				<NRF_PSEL(TWIM_SCL, 1, 00)>;
+			bias-pull-up;
+		};
+	};
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 22)>,
+				<NRF_PSEL(TWIM_SCL, 1, 00)>;
+			low-power-enable;
+			bias-pull-up;
+		};
+	};
+    spi2_default: spi2_default {
+            group1 {
+                psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>,
+                		<NRF_PSEL(SPIM_MISO, 0, 5)>,
+                		<NRF_PSEL(SPIM_SCK, 0, 4)>;
+        };
+    };
+
+    spi2_sleep: spi2_sleep {
+            group1 {
+                psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>,
+                		<NRF_PSEL(SPIM_MISO, 0, 5)>,
+                		<NRF_PSEL(SPIM_SCK, 0, 4)>;
+                low-power-enable;
+        };
+    };
+};
+
+/{
+	chosen {
+		zephyr,display = &lcd0;
+	};
+};

@@ -1,0 +1,64 @@
+# Copyright (c) 2023 ZitaoTech
+# SPDX-License-Identifier: MIT
+
+if BOARD_LECHIFFRE36
+
+config ZMK_KEYBOARD_NAME
+    default "lechiffre36"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+    default y
+
+endif # USB_DEVICE_STACK
+
+if ZMK_BACKLIGHT
+
+config PWM
+    default y
+
+config LED_PWM
+    default y
+
+endif # ZMK_BACKLIGHT
+
+
+config BT_CTLR
+    default BT
+
+if ZMK_DISPLAY
+
+config LPM009M360A
+	default y
+
+config SPI
+    default y
+    
+endif # ZMK_DISPLAY
+
+if LVGL
+config ZMK_DISPLAY_DEDICATED_THREAD_STACK_SIZE
+	default 8192
+
+#config LV_HOR_RES_MAX
+	#default 128
+#config LV_VER_RES_MAX
+	#default 32
+config LV_Z_VDB_SIZE
+	default 64
+
+config LV_DPI_DEF
+	default 70
+config LV_Z_BITS_PER_PIXEL
+	default 1
+choice LV_COLOR_DEPTH
+	default LV_COLOR_DEPTH_1
+endchoice
+
+endif # LVGL
+
+config ZMK_WIDGET_WPM_STATUS
+	default y
+
+endif # BOARD_LECHIFFRE36

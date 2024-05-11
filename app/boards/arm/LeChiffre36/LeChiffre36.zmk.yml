@@ -1,0 +1,11 @@
+file_format: "1"
+id: LeChiffre36
+name: LeChiffre36
+type: board
+arch: arm
+features:
+  - keys
+outputs:
+  - usb
+  - ble
+url: 
