@@ -97,8 +97,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
-                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL/100;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL/100;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);
@@ -142,8 +142,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
-                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL/100;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL/100;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);
@@ -184,8 +184,8 @@ int main(void) {
                 x = 0;
                 y = 0;
             } else {
-                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL;
-                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL;
+                x = ((x < 127) ? x : (x - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL/100;
+                y = ((y < 127) ? y : (y - 256)) * 1.5 * CONFIG_TRACKPAD_SPEEDMULTIPLIER_VERTICAL/100;
             }
             zmk_hid_mouse_movement_set(0, 0);
             zmk_hid_mouse_movement_update(x, y);

@@ -418,13 +418,13 @@ config TRACKPAD_SCROLL_INTERVAL
 
 config TRACKPAD_SPEEDMULTIPLIER_HORIZONTAL
     int "trackpad speed multiplier in horizontal direction"
-    range 0 10
-    default 1
+    range 0 1000
+    default 100
 
 config TRACKPAD_SPEEDMULTIPLIER_VERTICAL
     int "trackpad speed multiplier in horizontal direction"
-    range 0 10
-    default 1
+    range 0 10000
+    default 100
 
 #Display/LED Options
 endmenu
