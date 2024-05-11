@@ -361,6 +361,11 @@ config ZMK_IDICATOR_LAYER_BRT
     range 1 100
     default 20
 
+config ZMK_IDICATOR_LAYER_HIGH_BRT
+    int "Default High Brightness On Start"
+    range 1 100
+    default 80
+
 config ZMK_IDICATOR_LAYER_CYCLE_MAXBRT
     int "Brightness Cycle Max Brightness"
     range 1 100
