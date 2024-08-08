@@ -386,8 +386,8 @@ config ZMK_IDICATOR_BRT_STEP
     default 30
 
 config ZMK_IDICATOR_BLINK_INTERVAL
-    int "BLINK INTERVAL for INDICATOR LAYER 4"
-    default 300
+    int "BLINK INTERVAL for INDICATOR"
+    default 1000
 
 #ZMK_INDICATOR_LED
 endif
