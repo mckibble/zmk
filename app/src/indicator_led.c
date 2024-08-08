@@ -258,7 +258,7 @@ static void polling_work_work_handler(struct k_work *work) {
             }
         }
     }
-    k_work_reschedule(&polling_work, K_MSEC(100));
+    //k_work_reschedule(&polling_work, K_MSEC(100));
 }
 
 SYS_INIT(zmk_indicator_led_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
