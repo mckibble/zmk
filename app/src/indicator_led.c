@@ -118,7 +118,7 @@ static void blinky_work_work_handler(struct k_work *work) {
     zmk_indicator_led_set_brt(led_blinky.brightness);
     //int BLINK_INTERVAL = CONFIG_ZMK_IDICATOR_BLINK_INTERVAL;
     //k_work_reschedule(&blinky_work, K_MSEC(BLINK_INTERVAL));
-    k_work_reschedule(&blinky_work, K_MSEC(CONFIG_ZMK_IDICATOR_BLINK_INTERVAL));
+    k_work_reschedule(&blinky_work, K_MSEC(1000));
 }
 
 static int zmk_indicator_led_init(void) {
