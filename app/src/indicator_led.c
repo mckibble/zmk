@@ -220,6 +220,30 @@ static inline void blinky_onoff(bool onoff) {
     }
 }
 static void polling_work_work_handler(struct k_work *work) {
+    if (zmk_keymap_highest_layer_active() == 0) {
+        cycle_onoff(false);
+        zmk_indicator_led_off();
+        blinky_onoff(false);
+    } else if (zmk_keymap_highest_layer_active() == 1) {
+        cycle_onoff(false);
+        zmk_indicator_led_set_brt(CONFIG_ZMK_IDICATOR_LAYER_BRT);
+        zmk_indicator_led_on();
+        blinky_onoff(false);
+    } else if (zmk_keymap_highest_layer_active() == 2) {
+        cycle_onoff(false);
+        zmk_indicator_led_set_brt(CONFIG_ZMK_IDICATOR_LAYER_HIGH_BRT);
+        zmk_indicator_led_on();
+        blinky_onoff(false);
+    } else if (zmk_keymap_highest_layer_active() == 3) {
+        if (!zmk_indicator_led_is_on()) zmk_indicator_led_on();
+        cycle_onoff(true);
+        blinky_onoff(false);
+    } else if (zmk_keymap_highest_layer_active() == 4) {
+        if (!zmk_indicator_led_is_on()) zmk_indicator_led_on();
+        cycle_onoff(false);
+        blinky_onoff(true);
+    }
+    /*
     for (int i = 0; i < 5; i++) {
         if (zmk_keymap_layer_active(i)) {
             switch (i) {
@@ -258,7 +282,8 @@ static void polling_work_work_handler(struct k_work *work) {
             }
         }
     }
-    //k_work_reschedule(&polling_work, K_MSEC(100));
+    */
+    k_work_reschedule(&polling_work, K_MSEC(100));
 }
 
 SYS_INIT(zmk_indicator_led_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
